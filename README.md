@@ -1,2 +1,11 @@
-# wnr
-Watch &amp; Run: language agnostic run with batteries included
+# WnR: Watch & Run
+
+*WnR: Watch & Run* is language agnostic script runner with batteries included.
+
+## Installation
+
+## Usage
+
+## Contributing
+
+## Rational

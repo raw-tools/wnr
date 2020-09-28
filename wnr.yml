@@ -1,0 +1,31 @@
+---
+version: '1.0'
+
+verbose: true
+
+
+tasks:
+  build:
+    cmd: go build main.go
+    stdout: true
+  
+  test:
+    cmd: gotest .../.
+    stdout: true
+
+watchers:
+  go:
+    files:
+      - 'internal/**/*.go'
+      - 
+      - go.mod
+    runners:
+      - build
+
+  tests:
+    extends: go:files
+    files:
+      - test/**/*.go
+    runners:
+      - test
+    
