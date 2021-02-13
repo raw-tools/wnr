@@ -1,6 +1,7 @@
 package controler
 
 import (
+	"fmt"
 	"sync"
 
 	"github.com/noirbizarre/wnr/internal/config"
@@ -31,7 +32,7 @@ func New(cfg *config.Config, task tasks.Task) (*Controler, error) {
 }
 
 // func (c *Controler) AddWatch(w watchers.Watcher) {
-
+//
 // }
 
 func (c *Controler) Run(exit <-chan struct{}, w ...watchers.Watcher) error {
@@ -50,8 +51,8 @@ func (c *Controler) Run(exit <-chan struct{}, w ...watchers.Watcher) error {
 }
 
 func (c *Controler) runTasks(queue <-chan events.Event) {
-	for range queue {
-		// fmt.Printf("Task received: %s (%s)\n", evt.Name, evt.KwArgs)
+	for evt := range queue {
+		fmt.Printf("Task received: %s (%s)\n", evt.Name, evt.KwArgs)
 		go c.task.Run()
 		// task := tasks.NewCommandTask("")
 		// go task.Run()

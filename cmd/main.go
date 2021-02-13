@@ -47,7 +47,7 @@ func init() {
 
 	rootCmd.PersistentFlags().BoolVar(&verbose, "verbose", false, "Verbose output")
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "",
-		"config file (default is $HOME/.config/wk/config.toml)")
+		"config file (default is $CWD/wnr.yaml)")
 
 	// rootCmd.PersistentFlags().StringVar(&wkHome, "home", "",
 	// 	"config file (default is $HOME/.config/wk/)")

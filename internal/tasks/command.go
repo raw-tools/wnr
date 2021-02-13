@@ -20,6 +20,7 @@ func NewCommandTask(command string) *CommandTask {
 func (ct *CommandTask) Run() error {
 	// println(ct.cmd)
 	args := strings.Split(ct.cmd, " ")
+	print("cmd", args)
 	cmd := exec.Command(args[0], args[1:]...)
 	// if runtime.GOOS == "windows" {
 	// 	cmd = exec.Command("tasklist")
