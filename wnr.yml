@@ -3,7 +3,6 @@ version: '1.0'
 
 verbose: true
 
-
 tasks:
   build:
     cmd: go build main.go
@@ -17,15 +16,23 @@ watchers:
   go:
     files:
       - 'internal/**/*.go'
-      - 
       - go.mod
-    runners:
-      - build
+    # runners:
+    #   - build
 
   tests:
     extends: go:files
     files:
       - test/**/*.go
-    runners:
-      - test
+    # runners:
+    #   - test
     
+profiles:
+  build:
+    watchers: go
+    tasks: build
+  test:
+    watchers: go
+    tasks: test
+  all:
+    extends: default

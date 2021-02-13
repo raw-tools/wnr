@@ -38,7 +38,6 @@ func (fw *FileWatcher) Watch(exit <-chan struct{}) (<-chan events.Event, error) 
 	// Aggregate/debuf events
 	go func() {
 		for range time.After(500 * time.Millisecond) {
-			println("afeter")
 			if len(files) > 0 {
 				out := make([]string, 0, len(files))
 				for k := range files {
