@@ -1,0 +1,86 @@
+---
+version: '1.0'
+
+verbose: true
+
+tasks:
+  shortcut: echo "this is a shortcut syntax"
+
+  multiline_shortcut: >
+    echo "first line"
+    echo "seconf line"
+
+  default:
+    cmd: echo "default syntax"
+    stdout: true
+  
+  multiple:
+    cmd:
+      - echo "first line"
+      - echo "second line"
+
+  multiline:
+    cmd: >
+      echo "first line"
+      echo "second line"
+
+  inherited:
+    extends: multiple
+    cmd: echo "third line"
+
+  shebang: >
+    #!/bin/env python
+    world = 'World'
+    print(f'Hello {world}')
+
+watchers:
+  go:
+    files:
+      - internal/**/*.go
+      - go.mod
+
+  tests:
+    extends: go
+    files:
+      - test/**/*.go
+
+  doc:
+    files:
+      - "**/*.md"
+    exclude:
+      - README.md
+
+  yaml: "**/*.yml"
+
+    
+profiles:
+  basic:
+    watch:
+      - go
+      - yaml
+      - doc
+    run:
+      - default
+      - inherited
+
+  inline:
+    watch: wtf/**/*.wtf
+    run: echo "WTF"
+  
+  build:
+    watchers: go
+    tasks: build
+  
+  test:
+    watchers: go
+    tasks: test
+  
+  inherited:
+    extends: basic
+    watch: some/path/to/a/file
+  
+  all:
+    extends: 
+      - basic
+      - build
+      - test
